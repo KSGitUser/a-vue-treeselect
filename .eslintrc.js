@@ -1,4 +1,4 @@
-module.exports = {
+/* module.exports = {
   root: true,
   extends: [ 'riophae/vue' ],
   plugins: [ 'react' ],
@@ -28,4 +28,4 @@ module.exports = {
     "linebreak-style": 0,
     'no-unused-vars': ['error'],
   },
-}
+} */
