@@ -58,11 +58,15 @@
       renderX() {
         const { instance } = this
         const title = instance.multiple ? instance.clearAllText : instance.clearValueText
+        const xClass = {
+          'vue-treeselect__x-container':true,
+          'vue-treeselect__x-container vue-treeselect-open': instance.menu.isOpen,
+        }
 
         if (!this.shouldShowX) return null
 
         return (
-          <div class="vue-treeselect__x-container" title={title} onMousedown={this.handleMouseDownOnX}>
+          <div class={ xClass } title={title} onMousedown={this.handleMouseDownOnX}>
             <DeleteIcon class="vue-treeselect__x" />
           </div>
         )
@@ -72,7 +76,7 @@
         const { instance } = this
         const arrowClass = {
           'vue-treeselect__control-arrow': true,
-          'vue-treeselect__control-arrow--rotated': instance.menu.isOpen,
+          'vue-treeselect__control-arrow--rotated vue-treeselect-open': instance.menu.isOpen,
         }
 
         if (!this.shouldShowArrow) return null

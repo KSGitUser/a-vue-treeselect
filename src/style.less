@@ -16,18 +16,18 @@
 @treeselect-border-radius-sm: 2px;
 @treeselect-narrow-cell-width: 20px;
 @treeselect-wide-cell-width: 100%;
-@treeselect-icon-size: 16px;
+@treeselect-icon-size: 18px;
 @treeselect-transition-duration: 200ms;
 @treeselect-transition-duration-slow: 400ms;
 @treeselect-max-level: 8;
 
 @treeselect-control-height: 36px;
 @treeselect-control-inner-height: @treeselect-control-height - @treeselect-control-border-width * 2;
-@treeselect-control-border-width: 2px;
+@treeselect-control-border-width: 1px;
 @treeselect-control-border-color: #ddd;
 @treeselect-control-border-color-hover: #cfcfcf;
-@treeselect-control-border-color-active: @treeselect-control-border-color-hover;
-@treeselect-control-border-color-focus: @md-light-blue-600;
+@treeselect-control-border-color-active: #1976d2;
+@treeselect-control-border-color-focus: #1976d2;
 @treeselect-control-border-radius: @treeselect-border-radius-lg;
 @treeselect-control-bg: #fff;
 @treeselect-control-box-shadow-focus: 0 0 0 3px fade(@treeselect-control-border-color-focus, 10%);
@@ -71,8 +71,8 @@
 @treeselect-control-menu-divider-color: #f2f2f2;
 
 @treeselect-arrow-size: 9px;
-@treeselect-arrow-color: #ccc;
-@treeselect-arrow-color-hover: @md-grey-700;
+@treeselect-arrow-color: #757575;
+@treeselect-arrow-color-hover: #1976d2;
 @treeselect-arrow-transition-timing-function: @ease-out-expo;
 
 @treeselect-x-size: 24px;
@@ -374,6 +374,10 @@
     border-color: @treeselect-control-border-color-active;
   }
 
+  .vue-treeselect-open path {
+    fill:@treeselect-control-border-color-active;
+  }
+
   .vue-treeselect--open.vue-treeselect--open-below & {
     .border-radius-bottom(0);
   }
@@ -386,7 +390,7 @@
 .vue-treeselect__value-container,
 .vue-treeselect__multi-value {
   width: 100%;
-  vertical-align: middle;
+  vertical-align: bottom;
 }
 
 .vue-treeselect__value-container {
