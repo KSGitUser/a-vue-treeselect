@@ -3,7 +3,8 @@
 ![npm monthly downloads](https://badgen.now.sh/npm/dm/@riophae/vue-treeselect)
 ![jsDelivr monthly hits](https://badgen.net/jsdelivr/hits/npm/@riophae/vue-treeselect) [![Known vulnerabilities](https://snyk.io/test/npm/@riophae/vue-treeselect/badge.svg)](https://snyk.io/test/npm/@riophae/vue-treeselect) ![License](https://badgen.net/github/license/riophae/vue-treeselect)
 
-> A multi-select component with nested options support for Vue.js
+> A multi-select component with nested options support for Vue.js; Forked from Vue-treeselect
+
 
 ![Vue-Treeselect Screenshot](https://raw.githubusercontent.com/riophae/vue-treeselect/master/screenshot.png)
 
