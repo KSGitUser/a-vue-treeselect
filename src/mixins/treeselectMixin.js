@@ -348,7 +348,7 @@ export default {
      */
     limitText: {
       type: Function,
-      default: function limitTextDefault(count) { // eslint-disable-line func-name-matching
+      default: function limitTextDefault(count) { // eslint-disable-line func-name-matching        
         return `and ${count} more`
       },
     },

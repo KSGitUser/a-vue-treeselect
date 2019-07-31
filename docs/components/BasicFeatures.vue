@@ -5,6 +5,7 @@
       :options="options"
       placeholder="Select your favourite(s)..."
       v-model="value"
+      :limit=0
       />
     <pre class="result">{{ value }}</pre>
   </div>

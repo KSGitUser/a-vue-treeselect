@@ -1,13 +1,13 @@
 <script>
-  import { onLeftClick, isPromise } from '../utils'
-  import SingleValue from './SingleValue'
-  import MultiValue from './MultiValue'
-  import DeleteIcon from './icons/Delete'
-  import ArrowIcon from './icons/Arrow'
+  import { onLeftClick, isPromise } from '../utils';
+  import SingleValue from './SingleValue';
+  import MultiValue from './MultiValue';
+  import DeleteIcon from './icons/Delete';
+  import ArrowIcon from './icons/Arrow';
 
   export default {
     name: 'vue-treeselect--control',
-    inject: [ 'instance' ],
+    inject: ['instance'],
 
     computed: {
       /* eslint-disable valid-jsdoc */
@@ -16,14 +16,14 @@
        * @return {boolean}
        */
       shouldShowX() {
-        const { instance } = this
+        const { instance } = this;
 
         return (
           instance.clearable &&
           !instance.disabled &&
           instance.hasValue &&
           (this.hasUndisabledValue || instance.allowClearingDisabled)
-        )
+        );
       },
 
       /**
@@ -31,12 +31,12 @@
        * @return {boolean}
        */
       shouldShowArrow() {
-        const { instance } = this
+        const { instance } = this;
 
-        if (!instance.alwaysOpen) return true
+        if (!instance.alwaysOpen) return true;
         // Even with `alwaysOpen: true`, sometimes the menu is still closed,
         // e.g. when the control is disabled.
-        return !instance.menu.isOpen
+        return !instance.menu.isOpen;
       },
 
       /**
@@ -44,48 +44,59 @@
        * @type {boolean}
        */
       hasUndisabledValue() {
-        const { instance } = this
+        const { instance } = this;
 
         return (
           instance.hasValue &&
           instance.internalValue.some(id => !instance.getNode(id).isDisabled)
-        )
-      },
+        );
+      }
       /* eslint-enable valid-jsdoc */
     },
 
     methods: {
       renderX() {
-        const { instance } = this
-        const title = instance.multiple ? instance.clearAllText : instance.clearValueText
+        const { instance } = this;
+        const title = instance.multiple
+          ? instance.clearAllText
+          : instance.clearValueText;
         const xClass = {
-          'vue-treeselect__x-container':true,
-          'vue-treeselect__x-container vue-treeselect-open': instance.menu.isOpen,
-        }
+          'vue-treeselect__x-container': true,
+          'vue-treeselect__x-container vue-treeselect-open':
+            instance.menu.isOpen
+        };
 
-        if (!this.shouldShowX) return null
+        if (!this.shouldShowX) return null;
 
         return (
-          <div class={ xClass } title={title} onMousedown={this.handleMouseDownOnX}>
-            <DeleteIcon class="vue-treeselect__x" />
+          <div
+            class={xClass}
+            title={title}
+            onMousedown={this.handleMouseDownOnX}
+          >
+            <DeleteIcon class='vue-treeselect__x' />
           </div>
-        )
+        );
       },
 
       renderArrow() {
-        const { instance } = this
+        const { instance } = this;
         const arrowClass = {
           'vue-treeselect__control-arrow': true,
-          'vue-treeselect__control-arrow--rotated vue-treeselect-open': instance.menu.isOpen,
-        }
+          'vue-treeselect__control-arrow--rotated vue-treeselect-open':
+            instance.menu.isOpen
+        };
 
-        if (!this.shouldShowArrow) return null
+        if (!this.shouldShowArrow) return null;
 
         return (
-          <div class="vue-treeselect__control-arrow-container" onMousedown={this.handleMouseDownOnArrow}>
+          <div
+            class='vue-treeselect__control-arrow-container'
+            onMousedown={this.handleMouseDownOnArrow}
+          >
             <ArrowIcon class={arrowClass} />
           </div>
-        )
+        );
       },
 
       handleMouseDownOnX: onLeftClick(function handleMouseDownOnX(evt) {
@@ -98,21 +109,21 @@
          * need of any polyfill.
          */
 
-        evt.stopPropagation()
-        evt.preventDefault()
+        evt.stopPropagation();
+        evt.preventDefault();
 
-        const { instance } = this
-        const result = instance.beforeClearAll()
+        const { instance } = this;
+        const result = instance.beforeClearAll();
         const handler = shouldClear => {
-          if (shouldClear) instance.clear()
-        }
+          if (shouldClear) instance.clear();
+        };
 
         if (isPromise(result)) {
           // The handler will be called async.
-          result.then(handler)
+          result.then(handler);
         } else {
           // Keep the same behavior here.
-          setTimeout(() => handler(result), 0)
+          setTimeout(() => handler(result), 0);
           // Also, note that IE9 requires:
           //   setTimeout(() => fn(...args), delay)
           // Instead of:
@@ -121,37 +132,37 @@
       }),
 
       handleMouseDownOnArrow: onLeftClick(function handleMouseDownOnArrow(evt) {
-        evt.preventDefault()
-        evt.stopPropagation()
+        evt.preventDefault();
+        evt.stopPropagation();
 
-        const { instance } = this
+        const { instance } = this;
 
         // Focus the input or prevent blurring.
-        instance.focusInput()
-        instance.toggleMenu()
+        instance.focusInput();
+        instance.toggleMenu();
       }),
 
       // This is meant to be called by child `<Value />` component.
       renderValueContainer(children) {
-        return (
-          <div class="vue-treeselect__value-container">
-            {children}
-          </div>
-        )
-      },
+        return <div class='vue-treeselect__value-container'>{children}</div>;
+      }
     },
 
     render() {
-      const { instance } = this
-      const ValueContainer = instance.single ? SingleValue : MultiValue
+      const { instance } = this;
+      /* const ValueContainer = instance.single ? SingleValue : MultiValue */
+      const ValueContainer = MultiValue;
 
       return (
-        <div class="vue-treeselect__control" onMousedown={instance.handleMouseDown}>
-          <ValueContainer ref="value-container" />
+        <div
+          class='vue-treeselect__control'
+          onMousedown={instance.handleMouseDown}
+        >
+          <ValueContainer ref='value-container' />
           {this.renderX()}
           {this.renderArrow()}
         </div>
-      )
-    },
-  }
+      );
+    }
+  };
 </script>
