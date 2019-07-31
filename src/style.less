@@ -10,7 +10,7 @@
  */
 
 @treeselect-font-size: 1em;
-@treeselect-font-size-sm: 12px;
+@treeselect-font-size-sm: 14px;
 @treeselect-padding: 5px;
 @treeselect-border-radius-lg: 0px;
 @treeselect-border-radius-sm: 2px;
@@ -21,7 +21,7 @@
 @treeselect-transition-duration-slow: 400ms;
 @treeselect-max-level: 8;
 
-@treeselect-control-height: 24px;
+@treeselect-control-height: 32px;
 @treeselect-control-inner-height: @treeselect-control-height -
   @treeselect-control-border-width * 2;
 @treeselect-control-border-width: 1px;
@@ -80,6 +80,8 @@
 @treeselect-x-size: 24px;
 @treeselect-x-color: white;
 @treeselect-x-color-hover: @md-red-600;
+
+@input-text-color: white;
 
 @treeselect-option-bg-highlight: @md-grey-100;
 @treeselect-option-selected-bg: @md-blue-50;
@@ -606,6 +608,7 @@
   background: none transparent;
   line-height: 1;
   vertical-align: middle;
+  color: @input-text-color;
 
   &::-ms-clear {
     display: none;
@@ -955,6 +958,7 @@
 .vue-treeselect__label {
   .text-truncate();
 
+  color: @treeselect-control-bg;
   display: table-cell;
   padding-left: @treeselect-padding;
   max-width: 100%;
@@ -1128,6 +1132,24 @@
 }
 
 //// my styles
+
+.selectionChip {
+  background-color: #fff;
+  padding: 0 5px 0 2px;
+  border-radius: 4px;
+  color: #000;
+  font-weight: bold;
+  font-size: @treeselect-font-size;
+  text-align: center;
+  height: 16px;
+  margin-left: 6px;
+  margin-right: 10px;
+}
+
+.selectionValue {
+  font-size: @treeselect-font-size;
+  color: @input-text-color;
+}
 
 /* .vue-treeselect__multi-value,
 .vue-treeselect__value-container, 

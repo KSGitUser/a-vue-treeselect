@@ -40,8 +40,9 @@
                 <span
                   class='selectionChip'
                   style='background-color: rgb(255, 255, 255);'
-                />{' '}
-                {count}
+                >
+                  {' ' + count}
+                </span>
               </span>
             </span>
           </div>
