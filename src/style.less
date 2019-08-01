@@ -21,7 +21,7 @@
 @treeselect-transition-duration-slow: 400ms;
 @treeselect-max-level: 8;
 
-@treeselect-control-height: 32px;
+@treeselect-control-height: 26px;
 @treeselect-control-inner-height: @treeselect-control-height -
   @treeselect-control-border-width * 2;
 @treeselect-control-border-width: 1px;
@@ -958,11 +958,13 @@
 .vue-treeselect__label {
   .text-truncate();
 
+  padding-left: 15px;
   color: @treeselect-control-bg;
   display: table-cell;
   padding-left: @treeselect-padding;
   max-width: 100%;
   vertical-align: middle;
+  font-size: 13px;
   cursor: inherit; // override user agent style
 }
 
@@ -1123,10 +1125,10 @@
 .vue-treeselect__control::after {
   content: 'Выбор маршрута';
   height: 12px;
-  font-size: 12px;
+  font-size: 13px;
   color: #fff;
   display: block;
-  top: -12px;
+  top: -15px;
   left: 0;
   position: absolute;
 }
@@ -1135,10 +1137,10 @@
 
 .selectionChip {
   background-color: #fff;
-  padding: 0 5px 0 2px;
+  padding: 0 4px;
   border-radius: 4px;
   color: #000;
-  font-weight: bold;
+  font-weight: 600;
   font-size: @treeselect-font-size;
   text-align: center;
   height: 16px;

@@ -1,6 +1,6 @@
 {
   "name": "a-vue-treeselect",
-  "version": "0.0.45",
+  "version": "0.0.46",
   "description": "A multi-select component for some tasks support for Vue.js",
   "author": "Riophae Lee <riophaelee@gmail.com>/Krikun <rusakk@mail.ru>",
   "license": "MIT",
