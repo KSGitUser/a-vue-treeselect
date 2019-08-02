@@ -2,8 +2,8 @@
  * Dependencies
  */
 
-@import '~material-colors/dist/colors.less';
-@import '~easings-css/easings.less';
+@import "~material-colors/dist/colors.less";
+@import "~easings-css/easings.less";
 
 /**
  * Variables
@@ -21,7 +21,7 @@
 @treeselect-transition-duration-slow: 400ms;
 @treeselect-max-level: 8;
 
-@treeselect-control-height: 26px;
+@treeselect-control-height: 33px;
 @treeselect-control-inner-height: @treeselect-control-height -
   @treeselect-control-border-width * 2;
 @treeselect-control-border-width: 1px;
@@ -96,18 +96,18 @@
 @treeselect-checkbox-bg-hover: @treeselect-checkbox-bg;
 @treeselect-checkbox-indeterminate-border-color: @treeselect-checkbox-color-highlight;
 @treeselect-checkbox-indeterminate-bg: @treeselect-checkbox-color-highlight;
-@treeselect-checkbox-indeterminate-icon: './assets/checkbox-indeterminate.png';
+@treeselect-checkbox-indeterminate-icon: "./assets/checkbox-indeterminate.png";
 @treeselect-checkbox-indeterminate-border-color-hover: @treeselect-checkbox-color-highlight;
 @treeselect-checkbox-indeterminate-bg-hover: @treeselect-checkbox-color-highlight;
 @treeselect-checkbox-checked-border-color: @treeselect-checkbox-color-highlight;
 @treeselect-checkbox-checked-bg: @treeselect-checkbox-color-highlight;
-@treeselect-checkbox-checked-icon: './assets/checkbox-checked.png';
+@treeselect-checkbox-checked-icon: "./assets/checkbox-checked.png";
 @treeselect-checkbox-checked-border-color-hover: @treeselect-checkbox-color-highlight;
 @treeselect-checkbox-checked-bg-hover: @treeselect-checkbox-color-highlight;
 @treeselect-checkbox-disabled-border-color: @treeselect-checkbox-border-color;
 @treeselect-checkbox-disabled-bg-color: darken(@treeselect-checkbox-bg, 3%);
-@treeselect-checkbox-disabled-indeterminate-icon: './assets/checkbox-indeterminate-disabled.png';
-@treeselect-checkbox-disabled-checked-icon: './assets/checkbox-checked-disabled.png';
+@treeselect-checkbox-disabled-indeterminate-icon: "./assets/checkbox-indeterminate-disabled.png";
+@treeselect-checkbox-disabled-checked-icon: "./assets/checkbox-checked-disabled.png";
 @treeselect-option-label-color: inherit;
 @treeselect-option-label-color-disabled: rgba(0, 0, 0, 0.25);
 
@@ -208,8 +208,8 @@
 // based on: https://github.com/strues/retinajs/blob/master/dist/retina.less
 .retina(@path, @cap: 2) {
   // stylelint-disable-line selector-class-pattern
-  @lowretina: ~'(min-resolution: 1.5dppx)';
-  @2xpath: replace(@path, '(\.\w+)$', '@2x$1');
+  @lowretina: ~"(min-resolution: 1.5dppx)";
+  @2xpath: replace(@path, "(\.\w+)$", "@2x$1");
 
   background-image: url(@path);
 
@@ -219,7 +219,7 @@
 
   .create-queries() when (@cap >= 2) {
     .loop(@env) when (@env <= @cap) {
-      @retinapath: replace(@path, '(\.\w+)$', '@@{env}x$1');
+      @retinapath: replace(@path, "(\.\w+)$", "@@{env}x$1");
       @media (min-resolution: @env * 96dpi) {
         background-image: url(@retinapath);
       }
@@ -424,9 +424,8 @@
   .horizontal-padding(@treeselect-padding);
   padding-left: 0px;
   position: absolute;
-  top: 0;
   right: 0;
-  bottom: 0;
+  bottom: -5px;
   left: 0;
   line-height: @treeselect-control-inner-height;
   user-select: none;
@@ -537,7 +536,8 @@
   display: inline-block;
   padding-top: @treeselect-padding;
   padding-right: @treeselect-padding;
-  vertical-align: top;
+  vertical-align: bottom;
+  line-height: 1.2;
 }
 
 .vue-treeselect__limit-tip-text {
@@ -646,6 +646,7 @@
   .narrow-cell();
   .clickable();
 
+  vertical-align: bottom;
   color: @treeselect-x-color;
   animation: @treeselect-transition-duration vue-treeselect-animation-fade-in
     @ease-out-circ;
@@ -668,6 +669,11 @@
 .vue-treeselect__control-arrow-container {
   .narrow-cell();
   .clickable();
+  vertical-align: bottom;
+
+  & svg {
+    margin-bottom: 8px;
+  }
 
   .vue-treeselect--disabled & {
     .reset-cursor();
@@ -1018,7 +1024,7 @@
   &::after {
     display: block;
     position: absolute;
-    content: '';
+    content: "";
     left: 5px;
     top: 2.5px;
     width: 2px;
@@ -1044,7 +1050,7 @@
   &::after {
     display: block;
     position: absolute;
-    content: '';
+    content: "";
     background: #fff;
     transform: rotate(45deg);
   }
@@ -1079,7 +1085,7 @@
     .rounded();
 
     position: absolute;
-    content: '';
+    content: "";
     left: 0;
     top: 0;
     display: block;
@@ -1122,13 +1128,24 @@
   box-sizing: border-box;
 }
 
-.vue-treeselect__control::after {
-  content: 'Выбор маршрута';
+/* .vue-treeselect__control::after {
+  content: attr(data-label-attr);
   height: 12px;
   font-size: 13px;
   color: #fff;
   display: block;
-  top: -15px;
+  top: -8px;
+  left: 0;
+  position: absolute;
+} */
+
+.vue-treeselect::after {
+  content: attr(data-label-attr);
+  height: 12px;
+  font-size: 13px;
+  color: #fff;
+  display: block;
+  top: -8px;
   left: 0;
   position: absolute;
 }
@@ -1141,16 +1158,19 @@
   border-radius: 4px;
   color: #000;
   font-weight: 600;
-  font-size: @treeselect-font-size;
+  font-size: 13px;
   text-align: center;
   height: 16px;
   margin-left: 6px;
   margin-right: 10px;
+  min-width: 15px;
+  display: inline-block;
 }
 
 .selectionValue {
-  font-size: @treeselect-font-size;
+  font-size: 13px;
   color: @input-text-color;
+  font-weight: 400;
 }
 
 /* .vue-treeselect__multi-value,

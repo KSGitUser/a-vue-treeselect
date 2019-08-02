@@ -1,6 +1,6 @@
 {
   "name": "a-vue-treeselect",
-  "version": "0.0.47",
+  "version": "0.0.54",
   "description": "A multi-select component for some tasks support for Vue.js",
   "author": "Riophae Lee <riophaelee@gmail.com>/Krikun <rusakk@mail.ru>",
   "license": "MIT",
@@ -27,8 +27,7 @@
     "lint": "npm run lint:js && npm run lint:css",
     "size": "size-limit",
     "verify-bundle": "npm run size && node build/verify-bundle.js",
-    "finish": "npm test && npm run bundle && npm run verify-bundle",
-    "publish": "node build/bundle.js && npm publish"
+    "finish": "npm test && npm run bundle && npm run verify-bundle"
   },
   "pre-commit": "lint",
   "dependencies": {
